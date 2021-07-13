@@ -7,14 +7,44 @@
 
         <title>Simple Calculator</title>
 
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <main>
-            <header class="calculator-header"></header>
-            <section class="calculator-screen"></section>
-            <section class="calculator-buttons"></section>
-            <footer class="calculator-reset-buttons"></footer>
+        <main class="container">
+            <header class="calculator-header">
+                <h1 class="hero-head">calc</h1>
+                <h2 class="theme-toggler">
+                    dark theme
+                </h2>
+            </header>
+            <section class="calculator-body">
+
+                <article class="calculator-screen"></article>
+                <article class="calculator-buttons">
+                    <div class="grid-container">
+                        <button class="btn btn-light btn-seven">7</button>
+                        <button class="btn btn-light btn-eight">8</button>
+                        <button class="btn btn-light btn-nine">8</button>
+                        <button class="btn btn-light btn-del">del</button>
+                        <button class="btn btn-light btn-four">4</button>
+                        <button class="btn btn-light btn-five">5</button>
+                        <button class="btn btn-light btn-six">6</button>
+                        <button class="btn btn-light btn-add">+</button>
+                        <button class="btn btn-light btn-one">1</button>
+                        <button class="btn btn-light btn-two">2</button>
+                        <button class="btn btn-light btn-three">3</button>
+                        <button class="btn btn-light btn-sub">-</button>
+                        <button class="btn btn-light btn-period">.</button>
+                        <button class="btn btn-light btn-zero">0</button>
+                        <button class="btn btn-light btn-divide">-</button>
+                        <button class="btn btn-light btn-multiply">-</button>
+                    </div>
+                    <div class="flex-container">
+                        <button class="btn btn-light btn-reset">reset</button>
+                        <button class="btn btn-light btn-equals">=</button>
+                    </div>
+                </article>
+            </section>
         </main>
     </body>
 </html>
