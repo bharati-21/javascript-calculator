@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
+
+:root {
+    --dark-color: #2C2E43;
+    --light-color: #B2B1B9;
+    --primary-color: #595260;
+    --secondary-color: #FFD523;
+    --reset-color: #334257;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: 'encode sans', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
