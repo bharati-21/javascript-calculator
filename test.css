@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
+
+:root {
+    --dark-bg-color: #284E78;
+    --light-color: #EEEEEE;
+    --medium-color: #857a91;
+    --secondary-color: #FB3640;
+    --primary-color: #0e1025;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: 'Encode Sans SC', sans-serif;
+    height: 100vh;
+    margin: auto;
+    padding: 2rem;
+    background-color: var(--dark-bg-color);
+    color: var(--light-color);
+}
+
+main.container {
+    height: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.calculator-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calculator-header h1, .calculator-header h2 {
+    font-size: 1.5rem;
+}
+
+.calculator-body {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: #0e102563;
+    border-radius: 0.5rem;
+    box-shadow: 5px 5px 10px 2px var(--primary-color);
+}
+
+.calculator-screen {
+    height: 15vh;
+    background: var(--primary-color);
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+/* 
+.calculator-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+} */
+
+.calculator-buttons .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 100%;
+    margin: auto;
+    /* padding: 0 1rem; */
+    align-items: center;
+    justify-items: center;
+}
+
+.grid-container .btn {
+    width: 95%;
+    color: var(--primary-color);
+    box-shadow: 1px 1px 2px 2px #6d6d6d;
+    background: var(--light-color);
+}
+
+.grid-container .btn-del, .flex-container .btn-reset {
+    background: var(--dark-bg-color);
+    color: var(--light-color);
+    box-shadow: 5px 5px 5px  var(--primary-color);
+}
+
+.btn {
+    font-family: 'Encode Sans EC', sans-serif;
+    height: 50px;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    padding: 1rem;
+}
+
+.calculator-buttons .flex-container {
+    display: flex;
+    max-width: 100%;
+    margin-top: 1.5rem;
+    gap: 1rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-container .btn {
+    width: 100%;
+    height: 50px;
+}
+
+.flex-container .btn-equals {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    box-shadow: 5px 5px 5px var(--primary-color)
+}
+
+
+@media screen and (max-width: 800px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+
+    .calculator-buttons .grid-container {
+        justify-items: center;
+        gap: 1rem;
+    }
+
+    .grid-container .btn{
+        width: 100%;
+    }
+    
+    .btn {
+        text-align: center;
+        height: 50px;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .calculator-buttons .grid-container {
+        grid-template-columns: repeat(3, 1fr) 2fr;
+    }
+}
