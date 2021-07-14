@@ -69,7 +69,7 @@ body {
 
 .calculator-screen {
     background: var(--primary-color);
-    
+    box-shadow: 5px 5px 5px #2C2E43;
     height: 15vh;
     width: 100%;
     
@@ -79,10 +79,10 @@ body {
 
 .calculator-buttons {
     background-color: #0e102595;
-
     width: 100%;
-
+    
     border-radius: 0.5rem;
+    box-shadow: 5px 5px 5px var(--primary-color);
     padding: 1rem;
     text-align: center;
 }
@@ -109,7 +109,7 @@ body {
     width: 75px;
     
     border-radius: 0.5rem;
-    box-shadow: 2px 3px 5px #B2B1B9;
+    box-shadow: 2px 2px 3px 1px #b2a4da;
     /*var(--medium-color);*/
 }
 
