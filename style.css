@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
+
+:root {
+    --dark-bg-color: #284E78;
+    --light-color: #EEEEEE;
+    --medium-color: #857a91;
+    --secondary-color: #FB3640;
+    --primary-color: #0e1025;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    
+    font-family: 'Encode Sans SC', sans-serif;
+    padding: 1rem;
+    
+    text-transform: uppercase;
+    background-color: var(--dark-bg-color);
+    color: var(--light-color);
+}
+
+/* main */
+.main {
+    border: 2px solid #000;
+    margin: auto;
+    display: flex;
+    max-width: 400px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/* Calculator Container */
+.calculator-container {
+    width: 100%;
+    padding: 1rem;
+}
+
+.calculator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.calculator-header h1 {
+    font-size: 1.8rem;
+}
+
+.calculator-header .theme-toggler {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;   
+}
+
+.hero-lead {
+    font-size: 1.8rem;
+}
+
+.toggler {
+    margin-left: 0.5rem;
+    display: inline-block;
+    width: 45px;
+    height: 20px;
+    position: relative;
+    border-radius: 1rem;
+}
+
+input.toggle-switch {
+    visibility: hidden;
+}
+
+.toggle-slider {
+    background: #fff;
+    position: absolute;
+    
+    display:inline-block;
+    border-radius: 1rem;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: 0.5s;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    background: var(--primary-color);
+    width: 20px;
+    left: 0px;
+    bottom: 0px;
+    top: 0;
+    border-radius: 50%;
+
+    transition:all  0.5s;
+}
+
+.toggle-switch:checked + .toggle-slider {
+    background-color: skyblue;
+}
+
+.toggle-switch:checked + .toggle-slider:before {
+    background-color: var(--primary-color);
+    width: 20px;
+    left: 25px;
+    bottom: 0px;
+    top: 0;
+}
+
+
+/* Calculator Screen */
+
+.calculator-screen {
+    height: 15vh;
+    background: var(--primary-color);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* calculator buttons */
+
+.calculator-buttons {
+    background-color:#0e1025a6;
+    border-radius: 0.5rem;
+
+}
+
+.calculator-buttons .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 1.5rem 1rem;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.calculator-buttons .grid-container .btn {
+    /* box-shadow: 1px 2px 1px 2px #968cce; */
+    box-shadow: 2px 2px 1px 1px #b2a4da;
+}
+
+.btn {
+    width: 100%;
+    height: 45px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    background: var(--light-color);
+    color: var(--primary-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    outline: none;
+    border: none;
+}
+
+.calculator-buttons .flex-container {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.btn-del, .btn-reset {
+    background-color: var(--dark-bg-color);
+    color: var(--light-color);
+    box-shadow: 5px 5px 5px 2px var(--primary-color) !important;
+}
+
+.btn-equals {
+    background-color: var(--secondary-color);
+    box-shadow: 5px 5px 5px 3px var(--primary-color) !important;
+    color: var(--light-color);
+
+}
