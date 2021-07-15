@@ -32,7 +32,6 @@ main.container {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
 }
 
 .calculator-header {
@@ -49,10 +48,7 @@ main.container {
 .calculator-body {
     width: 100%;
     margin: 0 auto;
-    padding: 1rem;
-    background-color: #0e102563;
     border-radius: 0.5rem;
-    box-shadow: 5px 5px 10px 2px var(--primary-color);
 }
 
 .calculator-screen {
@@ -62,14 +58,13 @@ main.container {
     border-radius: 0.5rem;
     margin-bottom: 1rem;
 }
-/* 
 .calculator-buttons {
-    display: flex;
-    flex-direction: column;
+    background-color: #0e102563;
+    box-shadow: 5px 5px 10px 2px var(--primary-color);
+    padding: 1rem;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-} */
+    border-radius: 0.5rem;
+} 
 
 .calculator-buttons .grid-container {
     display: grid;
@@ -125,6 +120,55 @@ main.container {
     box-shadow: 5px 5px 5px var(--primary-color)
 }
 
+
+.toggler {
+    display: inline-block;
+    width: 60px;
+    position: relative;
+    border-radius: 1rem;
+}
+
+input.toggle-switch {
+    visibility: hidden;
+}
+
+.toggle-slider {
+    background: #fff;
+    position: absolute;
+    
+    display:inline-block;
+    border-radius: 1rem;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: 0.5s;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    background: var(--primary-color);
+    width: 30px;
+    left: 0px;
+    bottom: 0px;
+    top: 0;
+    border-radius: 50%;
+
+    transition:all  0.5s;
+}
+
+.toggle-switch:checked + .toggle-slider {
+    background-color: skyblue;
+}
+
+.toggle-switch:checked + .toggle-slider:before {
+    background-color: var(--primary-color);
+    width: 30px;
+    left: 30px;
+    bottom: 0px;
+    top: 0;
+}
 
 @media screen and (max-width: 800px) {
     body {
