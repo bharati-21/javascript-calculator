@@ -5,112 +5,97 @@ const calculatorScreen = document.querySelector('.calculator-screen');
 const btnReset = document.querySelector('.btn-reset');
 const divResult = document.querySelector('.div-result');
 const divDisplay = document.querySelector('.div-display');
+const calculatorButtons = document.querySelector('.calculator-buttons');
+
 
 divResult.textContent = "0";
 
-
-// const btnDel = document.querySelector('.btn-del');
-// const btnEquals = document.querySelector('.btn-equals');
-// const btn = document.querySelectorAll('.btn');
-
-let expression = '';
-let currentValue = "0";
-
-
-const calculatorButtons = document.querySelector('.calculator-buttons');
-
 calculatorButtons.addEventListener("click", handleButtonClick);
 
+let currentResultValue = "0", expression = "";
 
 function handleButtonClick(e) {
-    if(e.target.classList.contains('btn')){
-        
-        if(currentValue.length !== 1) {
-            clearPreviousResult();
-        }
+    const clickTarget = e.target;
+    const targetClassList = clickTarget.classList;
 
-        const btnTarget = e.target;
-        const targetClassList = btnTarget.classList;
+    if(targetClassList.contains('btn')) {
+        // Get the text of button
 
-        const btnText = btnTarget.textContent;
+        const btnText = clickTarget.textContent;
 
+        // Check if the button was an operand (number or period) 
 
-        if(targetClassList.contains('btn-op')) {
-
-            if(checkNumberValidity()) {
-                currentValue = "0";
-                switch(btnText) {
-                    case '+': 
-                        expression += " + ";
-                        break;
-                    case '-':
-                        expression += " - ";
-                        break;
-                    case '/':
-                        expression += " / ";
-                        break;
-                    case '*':
-                        expression += " * ";
-                        break;
-                    default:
-                        console.log(expression)
-                        let ans = eval(expression);
-                        expression += " = ";
-                        currentValue = ans;
-                        break;
-                    
+        // Check if the button was an operator 
+        if(targetClassList.contains('btn-num')) {
+            // Check if the button is a period
+            
+            if(btnText === '.') {
+                // Check if the period has already been clicked
+                if(!periodInOperand()) {
+                    currentResultValue+='.';
                 }
-                divDisplay.textContent = expression; 
             }
-        }
-        else if(targetClassList.contains('btn-num')) {
-            
-            if(checkNumberValidity(btnText)) {
-                currentValue+=btnText;
-                expression+=btnText;
+ 
+            // Check if the button is other operands
+            else {
+                if(btnText !=='0') {
+                    if(currentResultValue==="0") {
+                        currentResultValue="";
+                    }
+                    currentResultValue+=btnText;
+                }
+                else {
+                    if(currentResultValue !== '0') {
+                        currentResultValue+=btnText;
+                    }
+                }
             }
-        }
-        else if(targetClassList.contains('btn-del')) {
-            
+
+            // Add the currentResultValue to divDisplay
+            displayOperand();
         }
 
-        else if(targetClassList.contains('btn-period')) {
-            if(!checkPeriodInExpression()) {
-                expression+=btnText;
-                currentValue+=btnText;
-                console.log('You clicked period');
-            }
-        }
-        else {
-            console.log('You clicked reset');
-        }
-        divResult.textContent = currentValue;
+        // Check if the button was delete
+            // 1. Does the result have previous expression value ?
+                // Yes => clearDisplay() and clearExpression()
+            // 2. Does the result only have "0".
+                // Yes => Don't do anything. 
+            // 3. Remove the last character
 
+        // Check if the button was reset
+        if(targetClassList.contains('btn-reset')) {
+            clearDisplay();
+            clearExpression();
+            clearResult();
+            clearCurrentResultValue();
+        }
     }
 }
 
-function checkPeriodInExpression() {
-    if(currentValue.indexOf('.') === -1) {
-        return false;
-    }
-    return true;
+
+function clearDisplay() {
+    divDisplay.textContent = "";
 }
 
-function checkNumberValidity(btnText) {
-    if(currentValue.length-1 === '.') {
-        return false;
-    }
-    else if(currentValue.length === 1 && btnText === '0') {
-        return false;
-    }
-    return true;
+function clearResult() {
+    divResult.textContent = "";
 }
 
-function clearPreviousResult() {
-    if(expression.indexOf("=")!==-1) {
-        expression = "";
-        currentValue = "0";
-        divDisplay.textContent = "";
-        divResult.textContent = currentValue;
+function clearExpression() {
+    expression = "";
+}
+
+function clearCurrentResultValue() {
+    currentResultValue = "";
+}
+
+function periodInOperand() {
+    if(currentResultValue.indexOf('.') !== -1) {
+        return true;
     }
+    return false;
+}
+
+function displayOperand() {
+    divResult.textContent = currentResultValue;
 }
