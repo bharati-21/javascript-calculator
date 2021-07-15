@@ -23,9 +23,38 @@ function handleButtonClick(e) {
 
         const btnText = clickTarget.textContent;
 
-        // Check if the button was an operand (number or period) 
-
         // Check if the button was an operator 
+            // 1) Check if the number is "="
+                // 1.1) Equal was pressed without an expression
+                // 1.2) Equal pressed after an operand
+            
+            if(targetClassList.contains('btn-op')) {
+                console.log('You pressed an operator');
+                if(btnText === '=') {
+                    if(validExpression()) {
+                        expression+=currentResultValue;
+                        console.log(expression);
+                        showExpression();
+                        showResult();
+                    }  
+                }
+
+                else {
+                    if(checkIfLastCharIsOPerator()) {
+                        expression = expression.slice(0,expression.length-3);
+                    }
+                    else {
+                        console.log('you pressed', btnText);
+
+                        expression+= currentResultValue + ` ${btnText} `;
+                        console.log(expression);
+                        showExpression();
+
+                    }
+                }
+            }
+
+        // Check if the button was an operand (number or period) 
         if(targetClassList.contains('btn-num')) {
             // Check if the button is a period
             
@@ -47,6 +76,7 @@ function handleButtonClick(e) {
                 else {
                     if(currentResultValue !== '0') {
                         currentResultValue+=btnText;
+                        console.log(currentResultValue);
                     }
                 }
             }
@@ -98,4 +128,42 @@ function periodInOperand() {
 
 function displayOperand() {
     divResult.textContent = currentResultValue;
+}
+
+function validExpression() {
+    console.log("validExpression");
+    if(checkIfLastCharIsOPerator()) {
+        console.log("checkIfLastCharIsOperator");
+        return false;
+        
+    }
+
+    const currValueChar = currentResultValue[currentResultValue.length-1];
+    if(currValueChar === '.') {
+        currentResultValue = currentResultValue.slice(0, currentResultValue.length-1);
+        console.log(currentResultValue);
+    }
+
+    return true;
+}
+
+function checkIfLastCharIsOPerator() {
+    const expressionChar = expression[expression.length - 2];
+    if(currentResultValue === "0" ){
+        if( expressionChar === '+' || expressionChar === '/' || expressionChar === '' || expressionChar === '*') {
+            return true;
+        }
+    } 
+    return false;
+}
+
+function showExpression() {
+    divDisplay.textContent = expression;
+    divResult.textContent = "0";
+    currentResultValue = "0";
+}
+
+function showResult() {
+    divResult.textContent = eval(expression);
+
 }
