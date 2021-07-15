@@ -16,7 +16,6 @@
 
 body {
     height: 100vh;
-    overflow: hidden;
     
     font-family: 'Encode Sans SC', sans-serif;
     padding: 1rem;
@@ -124,16 +123,33 @@ input.toggle-switch {
 
 .calculator-screen {
     height: 15vh;
+    
     background: var(--primary-color);
     border-radius: 0.5rem;
     margin-bottom: 1rem;
-
+    padding: 0.5rem 1rem;
     color: var(--light-color);
-    font-size: 1.5rem;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    overflow: auto;
+
+}
+
+.calculator-screen .div-display {
+    font-size: 1rem;
+    flex-basis: inherit;
+}
+
+.calculator-screen .div-result {
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
 }
 
 /* calculator buttons */
-
 .calculator-buttons {
     background-color:#0e1025a6;
     border-radius: 0.5rem;
