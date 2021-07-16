@@ -46,6 +46,7 @@ function handleButtonClick(e) {
             prevChar = currChar;
             currChar = btnText;
 
+
             // 1) if the button is "="
                 // 1.1) Equal was pressed without an expression that is currentValue = 0
                 // 1.2) Equal pressed after an operand
@@ -58,24 +59,36 @@ function handleButtonClick(e) {
                     currentOperand = "";
                     currChar = "";
                     prevChar = "";
+                    console.log(currentResultValue);
                     setResultText(eval(currentResultValue));
+
+                    setDivResultOpacity("1");
 
                     setExpression(currentResultValue + " = ");
                     setDisplayText(expression);
                 }  
             }
             else {
+
                 // Check if there is the result of a previous expression
                     // Can do this by checking the divDisplay.textContent === ""
                     // Yes => then set currentValue as previous answer
+                // Check if an operand was the first character to be pressed
                 if(checkPreviousExpression()) {
                     prevChar = "";
                     updateCurrentResult(divResult.textContent);
+                }
+
+                if(operatorIsFirstCharacter()) {
+                    prevChar = "0";
+                    updateCurrentResult("0");
                 }
                 
                 // Check if the last character was an operator in currentValue.
                     // Yes => replace with this operator 
                 checkIfLastCharIsOperator();
+
+                setDivResultOpacity("1");
 
                 updateCurrentResult(currentResultValue + ` ${btnText} `);
                 setResultText(currentResultValue);
@@ -183,16 +196,19 @@ function periodInOperand() {
 }
 
 function validExpression() {
+    console.log()
     if(prevChar === "" && currentResultValue === "") {
         updateCurrentResult("0");
     }
-    else if(prevChar === "*" || prevChar === "/" || prevChar === "+" || prevChar === "-") {
-        updateCurrentResult(" 0 ");
+    const char = currentResultValue[currentResultValue.length-2];
+    console.log(char);
+    if(char === "*" || char === "+" || char === "-" || char === "/") {
+        updateCurrentResult(currentResultValue + "0");
     }
-
     else if(prevChar === ".") {
         updateCurrentResult(currentResultValue.slice(0, currentResultValue.length - 1));
     }
+    
     return true;
 }
 
@@ -209,6 +225,12 @@ function checkPreviousExpression() {
         
     } 
     return false;
+}
+
+function operatorIsFirstCharacter() {
+    if(divResult.textContent === "0" && prevChar === "" && currentOperand === "") {
+        return true;
+    }
 }
 
 function checkIfLastCharIsOperator() {
