@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
 
+/* Variables for colors used in dark and light theme */
 :root {
     --dark-bg-color: #284E78;    
     --dark-light-color: #EEEEEE;
     --dark-medium-color: #857a91;
-    --dark-secondary-color: #ff525b;
+    --dark-secondary-color: #f86e75;
     --dark-primary-color: #0e1025;
 
     --light-bg-color: #f4f4f4;
@@ -12,7 +13,6 @@
     --light-medium-color: #cec4bf;
     --light-secondary-color: #02475E;
     --light-primary-color: #0e1025;
-
 }
 
 * {
@@ -21,6 +21,7 @@
     margin: 0;
 }
 
+/* dark and light theme backgrounds */
 body.dark-theme {
     background-color: var(--dark-bg-color);
     color: var(--dark-light-color);
@@ -31,14 +32,13 @@ body.light-theme {
     color: var(--light-dark-color);
 }
 
+/* Other body styles */
 body {
     height: 100vh;
     font-family: 'Encode Sans SC', sans-serif;
     padding: 1rem;
     text-transform: uppercase;
-    /* background-color: var(--dark-bg-color);
-    color: var(--dark-light-color); */
-
+    
     background-color: var(--light-bg-color);
     color: var(--light-dark-color);
 
@@ -46,19 +46,15 @@ body {
 }
 
 
-
-
-/* main */
+/* main container that has the calculator */
 .main {
-    border: 2px solid #000;
     margin: auto;
     display: flex;
     max-width: 400px;
     height: 100%;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
 }
 
 /* Calculator Container */
@@ -67,6 +63,7 @@ body {
     padding: 1rem;
 }
 
+/* Calculator header that has heading and theme toggle*/
 .calculator-header {
     display: flex;
     justify-content: space-between;
@@ -79,6 +76,7 @@ body {
     font-size: 1.8rem;
 }
 
+/* Theme toggler and theme text (lead) */
 .calculator-header .theme-toggler {
     display: flex;
     align-items: center;
@@ -89,6 +87,7 @@ body {
     font-size: 1.8rem;
 }
 
+/* toggler label */
 .toggler {
     margin-left: 0.5rem;
     display: inline-block;
@@ -98,13 +97,14 @@ body {
     border-radius: 1rem;
 }
 
+/* toggler checkbox */
 input.toggle-switch {
     visibility: hidden;
 }
 
-
+/* toggler inner span */
 .toggle-slider {
-    background-color: var(--dark-medium-color);
+    background-color: #888;;/*var(--dark-medium-color);*/
     position: absolute;
     
     display:inline-block;
@@ -116,6 +116,7 @@ input.toggle-switch {
     transition: 0.5s;
 }
 
+/* toggler round slider when unchecked */
 .toggle-slider:before {
     position: absolute;
     content: "";
@@ -129,10 +130,12 @@ input.toggle-switch {
     transition:all  0.5s;
 }
 
+/* toggler background when checked */
 .toggle-switch:checked + .toggle-slider {
     background-color: skyblue;
 }
 
+/* toggler round slider when checked */
 .toggle-switch:checked + .toggle-slider:before {
     background-color: var(--dark-primary-color);
     width: 20px;
@@ -148,6 +151,7 @@ input.toggle-switch {
     background: var(--light-dark-color);   
 }
 
+/* Calculator dark and light theme screen backgrounds */
 .dark-theme .calculator-screen {
     color: var(--dark-light-color);
     background: var(--dark-primary-color);
@@ -172,6 +176,11 @@ input.toggle-switch {
 }
 
 
+/* Display color*/
+.calculator-screen .div-display {
+    font-size: 1rem;
+    color: var(--dark-light-color);
+}
 
 .light-theme .div-display {
     color: var(--dark-light-color);
@@ -181,10 +190,6 @@ input.toggle-switch {
     color: var(--dark-medium-color);
 }
 
-.calculator-screen .div-display {
-    font-size: 1rem;
-    color: var(--dark-light-color);
-}
 
 .calculator-screen .div-result {
     font-size: 1.5rem;
@@ -262,14 +267,15 @@ input.toggle-switch {
     transition: transform 0.3s ease-in-out;
 }
 
+
+/* Calculator button within flex container (reset and equals) */
 .calculator-buttons .flex-container {
     display: flex;
     gap: 1rem;
     padding: 0 1rem 1rem 1rem;
 }
 
-
-
+/* Reset and delete buttons: dark and light theme styles */
 .dark-theme .btn-del, .dark-theme .btn-reset {
     background-color: var(--dark-bg-color);
     color: var(--dark-light-color);
@@ -278,7 +284,7 @@ input.toggle-switch {
 
 .light-theme .btn-del, .light-theme .btn-reset {
     background-color: var(--light-secondary-color);
-    color: var(--light-medium-color);
+    color: var(--dark-light-color);
     box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
 }
 
@@ -288,8 +294,7 @@ input.toggle-switch {
     box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
 }
 
-
-
+/* equals button: dark and light theme styles */
 .dark-theme .btn-equals {
     background-color: var(--dark-secondary-color);
     box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
@@ -302,15 +307,14 @@ input.toggle-switch {
     color: var(--light-dark-color);
 }
 
-
 .btn-equals {
     background-color: #eb602e;
     box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
     color: var(--light-dark-color);
 }
 
-
+/* Button hover */
 .btn:hover {
     transform: scale(1.05);
-    
 }
+
