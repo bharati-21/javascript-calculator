@@ -122,7 +122,7 @@ input.toggle-switch {
 /* Calculator Screen */
 
 .calculator-screen {
-    height: 15vh;
+    min-height: 15vh;
     
     background: var(--primary-color);
     border-radius: 0.5rem;
@@ -136,16 +136,16 @@ input.toggle-switch {
     align-items: flex-end;
     flex-wrap: wrap;
     overflow: auto;
-
+    font-weight:bold;
 }
 
 .calculator-screen .div-display {
     font-size: 1rem;
-    flex-basis: inherit;
+    color: var(--medium-color);
 }
 
 .calculator-screen .div-result {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-top: 0.5rem;
 }
 

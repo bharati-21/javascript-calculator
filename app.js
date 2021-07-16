@@ -46,8 +46,14 @@ function handleButtonClick(e) {
             }
 
             else {
-                if(checkIfLastCharIsOPerator()) {
+                if(checkIfLastCharIsOperator()) {
                     expression = expression.slice(0,expression.length-3);
+                    expression.trimEnd();
+
+                    expression += ` ${btnText} `; 
+                    
+                    showExpression();
+                    clearCurrentResultValue();
                 }
                 else {
                     expression+= currentResultValue + ` ${btnText} `;
@@ -55,14 +61,13 @@ function handleButtonClick(e) {
                     clearResult();
                     clearCurrentResultValue();
                 }
+                
             }
         }
 
         // Check if the button was an operand (number or period) 
         else if (targetClassList.contains('btn-num')) {
-            // Check if the button is a period
-            checkPreviousExpression(btnText);
-
+            // Check if the button is a period            
             if(btnText === '.') {
                 // Check if the period has already been clicked
                 if(!periodInOperand()) {
@@ -72,17 +77,16 @@ function handleButtonClick(e) {
  
             // Check if the button is other operands
             else {
-                if(btnText !=='0') {
-                    if(currentResultValue==="0") {
-                        currentResultValue="";
-                    }
-                    currentResultValue+=btnText;
+                if(currentResultValue === "0") {
+                    currentResultValue="";
                 }
-                else {
-                    if(currentResultValue !== '0') {
-                        currentResultValue+=btnText;
-                    }
-                }
+                currentResultValue+=btnText;
+                // }
+                // else {
+                //     if(currentResultValue !== '0') {
+                //         currentResultValue+=btnText;
+                //     }
+                // }
             }
 
             // Add the currentResultValue to divDisplay
@@ -108,7 +112,7 @@ function handleButtonClick(e) {
 
 
 function clearDisplay() {
-    divDisplay.textContent = "";
+    divDisplay.textContent = "0";
 }
 
 function clearResult() {
@@ -120,7 +124,7 @@ function clearExpression() {
 }
 
 function clearCurrentResultValue() {
-    currentResultValue = "0";
+    currentResultValue = "";
 }
 
 function periodInOperand() {
@@ -135,10 +139,10 @@ function displayOperand() {
 }
 
 function validExpression() {
-    if(checkIfLastCharIsOPerator()) {
-        return false;
+    // if(checkIfLastCharIsOperator()) {
+    //     return false;
         
-    }
+    // }
 
     const currValueChar = currentResultValue[currentResultValue.length-1];
     if(currValueChar === '.') { 
@@ -148,10 +152,12 @@ function validExpression() {
     return true;
 }
 
-function checkIfLastCharIsOPerator() {
+function checkIfLastCharIsOperator() {
     const expressionChar = expression[expression.length - 2];
-    if(currentResultValue === "0" ){
-        if( expressionChar === '+' || expressionChar === '/' || expressionChar === '' || expressionChar === '*') {
+
+    // if(currentResultValue === "0" || currentResultValue === "" )
+    if(currentResultValue === "") {
+        if( expressionChar === '+' || expressionChar === '/' || expressionChar === '-' || expressionChar === '*') {
             return true;
         }
     } 
@@ -171,9 +177,17 @@ function checkPreviousExpression(btnText) {
         if(btnText === '=') {
             expression = expression.slice(0, expression.length-2);
             currentResultValue = "";
-            return;
+            // return;
         }
-        clearPreviousExpression(); 
+        else if(btnText === "+" || btnText === "-" || btnText === "*" || btnText === "/") {
+            currentResultValue = divResult.textContent;
+            clearExpression(0);
+            clearDisplay();
+            // return;
+        }
+        else {
+            clearPreviousExpression(); 
+        }
     }
 }
 
