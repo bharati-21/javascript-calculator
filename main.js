@@ -7,7 +7,11 @@ const divResult = document.querySelector(".div-result");
 const divDisplay = document.querySelector(".div-display");
 const calculatorButtons = document.querySelector(".calculator-buttons");
 
+togglerSlider.checked = false;
+
 calculatorButtons.addEventListener("click", handleButtonClick);
+togglerSlider.addEventListener('click', handleTooggle);
+
 
 let currentResultValue = "",
     expression = "",
@@ -34,12 +38,13 @@ function handleButtonClick(e) {
         // Get the text of button
         const btnText = clickTarget.textContent;
 
-        prevChar = currChar;
-        currChar = btnText;
+        
 
         // Check if the button was an operator
             // Yes => Check if the button was = or any other math operator.
         if (targetClassList.contains("btn-op")) {
+            prevChar = currChar;
+            currChar = btnText;
 
             // 1) if the button is "="
                 // 1.1) Equal was pressed without an expression that is currentValue = 0
@@ -80,6 +85,9 @@ function handleButtonClick(e) {
 
         // Check if the button was an operand (number or period)
         else if (targetClassList.contains("btn-num")) {
+            prevChar = currChar;
+            currChar = btnText;
+            
             checkPreviousExpression();
 
             setDivResultOpacity("1");
@@ -112,7 +120,6 @@ function handleButtonClick(e) {
 
                     }
                 }
-                console.log("Current Operand:", currentOperand);
             } 
             setResultText(currentResultValue);
         }
@@ -121,6 +128,8 @@ function handleButtonClick(e) {
             clearExpression();
             clearResult();
             clearCurrentResultValue();
+            setResultText("0");
+            setDivResultOpacity(".5");
             currentOperand = "";
             currChar = "";
             prevChar = "";
@@ -194,7 +203,10 @@ function setDivResultOpacity(opacity) {
 function checkPreviousExpression() {
     if(divDisplay.textContent !=="" && divDisplay.textContent !== null) {
         clearDisplay();
+        setExpression("");
+        clearCurrentResultValue();
         return true;
+        
     } 
     return false;
 }
@@ -206,11 +218,29 @@ function checkIfLastCharIsOperator() {
 }
 
 function deletePrevChar() {
-    console.log(prevChar, currChar);
-    if(currentOperand!="") {
-        currentOperand.slice(0, currentOperand.length-1);
-        updateCurrentResult(currentResultValue.slice(0, currentResultValue.length-1));
+    if(currentOperand!=="") {
+        currentOperand = currentOperand.slice(0, currentOperand.length-1);
         
+        updateCurrentResult(currentResultValue.slice(0, currentResultValue.length-1));
+        console.log(currentResultValue, currentOperand);
+        if(currentOperand === "") {
+            currentOperand = "0"
+            currentResultValue+= "0";
+        }
         setResultText(currentResultValue);
+    }
+}
+
+
+function handleTooggle(e) {
+    if(togglerSlider.checked === false) {
+        togglerSlider.checked = true;
+        document.body.classList.remove('light-theme');
+        document.body.classList.add('dark-theme');
+    }
+    else {
+        togglerSlider.checked = false;
+        document.body.classList.remove('dark-theme');
+        document.body.classList.add('light-theme');
     }
 }

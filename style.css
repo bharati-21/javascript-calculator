@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC&display=swap');
 
 :root {
-    --dark-bg-color: #284E78;
-    --light-color: #EEEEEE;
-    --medium-color: #857a91;
-    --secondary-color: #FB3640;
-    --primary-color: #0e1025;
+    --dark-bg-color: #284E78;    
+    --dark-light-color: #EEEEEE;
+    --dark-medium-color: #857a91;
+    --dark-secondary-color: #ff525b;
+    --dark-primary-color: #0e1025;
+
+    --light-bg-color: #f4f4f4;
+    --light-dark-color: #171010;
+    --light-medium-color: #cec4bf;
+    --light-secondary-color: #02475E;
+    --light-primary-color: #0e1025;
+
 }
 
 * {
@@ -14,16 +21,32 @@
     margin: 0;
 }
 
+body.dark-theme {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-light-color);
+}
+
+body.light-theme {
+    background-color: var(--light-bg-color);
+    color: var(--light-dark-color);
+}
+
 body {
     height: 100vh;
-    
     font-family: 'Encode Sans SC', sans-serif;
     padding: 1rem;
-    
     text-transform: uppercase;
-    background-color: var(--dark-bg-color);
-    color: var(--light-color);
+    /* background-color: var(--dark-bg-color);
+    color: var(--dark-light-color); */
+
+    background-color: var(--light-bg-color);
+    color: var(--light-dark-color);
+
+    transition: background-color 0.5s ease;
 }
+
+
+
 
 /* main */
 .main {
@@ -58,7 +81,6 @@ body {
 
 .calculator-header .theme-toggler {
     display: flex;
-
     align-items: center;
     justify-content: center;   
 }
@@ -80,8 +102,9 @@ input.toggle-switch {
     visibility: hidden;
 }
 
+
 .toggle-slider {
-    background: #fff;
+    background-color: var(--dark-medium-color);
     position: absolute;
     
     display:inline-block;
@@ -96,7 +119,7 @@ input.toggle-switch {
 .toggle-slider:before {
     position: absolute;
     content: "";
-    background: var(--primary-color);
+    background: var(--dark-primary-color);
     width: 20px;
     left: 0px;
     bottom: 0px;
@@ -111,7 +134,7 @@ input.toggle-switch {
 }
 
 .toggle-switch:checked + .toggle-slider:before {
-    background-color: var(--primary-color);
+    background-color: var(--dark-primary-color);
     width: 20px;
     left: 25px;
     bottom: 0px;
@@ -120,16 +143,25 @@ input.toggle-switch {
 
 
 /* Calculator Screen */
+.light-theme .calculator-screen {
+    color: var(--dark-light-color);
+    background: var(--light-dark-color);   
+}
+
+.dark-theme .calculator-screen {
+    color: var(--dark-light-color);
+    background: var(--dark-primary-color);
+}
 
 .calculator-screen {
-    min-height: 15vh;
-    
-    background: var(--primary-color);
+    min-height: 15vh;   
     border-radius: 0.5rem;
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
-    color: var(--light-color);
     
+    color: var(--dark-light-color);
+    background: var(--light-dark-color);  
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -139,9 +171,19 @@ input.toggle-switch {
     font-weight:bold;
 }
 
+
+
+.light-theme .div-display {
+    color: var(--dark-light-color);
+}
+
+.dark-theme .div-display {
+    color: var(--dark-medium-color);
+}
+
 .calculator-screen .div-display {
     font-size: 1rem;
-    color: var(--medium-color);
+    color: var(--dark-light-color);
 }
 
 .calculator-screen .div-result {
@@ -149,13 +191,22 @@ input.toggle-switch {
     margin-top: 0.5rem;
 }
 
-/* calculator buttons */
-.calculator-buttons {
-    background-color:#0e102552;
-    border-radius: 0.5rem;
-
+/* calculator buttons background */
+.light-theme .calculator-buttons {
+    background: var(--light-medium-color);   
 }
 
+.dark-theme .calculator-buttons {
+    background-color:#0e102552;
+}
+
+.calculator-buttons {
+    background: var(--light-medium-color);   
+    border-radius: 0.5rem;
+}
+
+
+/* Calculator grid container*/
 .calculator-buttons .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -168,9 +219,30 @@ input.toggle-switch {
     margin-bottom: 1.5rem;
 }
 
+/* Calculator buttons within grid container */
+.light-theme .calculator-buttons .grid-container .btn{
+    box-shadow: 3px 3px 1px 1px #8d8888;   
+}
+
+.dark-theme .grid-container .calculator-buttons {
+    box-shadow: 2px 2px 1px 1px #b2a4da;  
+}
+
 .calculator-buttons .grid-container .btn {
-    /* box-shadow: 1px 2px 1px 2px #968cce; */
-    box-shadow: 2px 2px 1px 1px #b2a4da;
+    /* box-shadow: 2px 2px 1px 1px #b2a4da; */
+    box-shadow: 2px 2px 1px 1px #8d8888;
+}
+
+
+/* Button styles */
+.dark-theme .btn {
+    background: var(--dark-light-color);
+    color: var(--dark-primary-color);
+}
+
+.light-theme .btn {
+    background-color: #EEEEEE;
+    color: var(--light-dark-color);
 }
 
 .btn {
@@ -178,8 +250,8 @@ input.toggle-switch {
     height: 45px;
     font-size: 1.2rem;
     padding: 0.5rem;
-    background: var(--light-color);
-    color: var(--primary-color);
+    background-color: #EEEEEE;
+    color: var(--light-dark-color);
     font-weight: bold;
     text-transform: uppercase;
     border-radius: 0.5rem;
@@ -196,17 +268,50 @@ input.toggle-switch {
     padding: 0 1rem 1rem 1rem;
 }
 
-.btn-del, .btn-reset {
+
+
+.dark-theme .btn-del, .dark-theme .btn-reset {
     background-color: var(--dark-bg-color);
-    color: var(--light-color);
-    box-shadow: 5px 5px 5px 2px var(--primary-color) !important;
+    color: var(--dark-light-color);
+    box-shadow: 5px 5px 5px 2px var(--dark-primary-color) !important;
 }
 
-.btn-equals {
-    background-color: var(--secondary-color);
-    box-shadow: 5px 5px 5px 3px var(--primary-color) !important;
-    color: var(--light-color);
+.light-theme .btn-del, .light-theme .btn-reset {
+    background-color: var(--light-secondary-color);
+    color: var(--light-medium-color);
+    box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
 }
+
+.btn-del, .btn-reset {
+    background-color: var(--dark-bg-color);
+    color: var(--dark-light-color);
+    box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
+}
+
+
+
+.dark-theme .btn-equals {
+    background-color: var(--dark-secondary-color);
+    box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
+    color: var(--light-dark-color);
+}
+
+.light-theme .btn-equals {
+    background-color: #eb602e;
+    box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
+    color: var(--light-dark-color);
+}
+
+
+.btn-equals {
+    background-color: #eb602e;
+    box-shadow: 5px 5px 5px  var(--light-dark-color) !important;
+    color: var(--light-dark-color);
+}
+
+
+
+
 
 .btn:hover {
     transform: scale(1.05);
