@@ -10,9 +10,11 @@
 
     --light-bg-color: #f4f4f4;
     --light-dark-color: #171010;
-    --light-medium-color: #cec4bf;
+    /* --light-medium-color: #cec4bf; */
+    --light-medium-color: #ddcec0;
     --light-secondary-color: #02475E;
     --light-primary-color: #0e1025;
+
 }
 
 * {

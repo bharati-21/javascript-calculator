@@ -7,9 +7,13 @@ const divResult = document.querySelector(".div-result");
 const divDisplay = document.querySelector(".div-display");
 const calculatorButtons = document.querySelector(".calculator-buttons");
 
+// Default setting of the theme toggler (light theme)
 togglerSlider.checked = false;
 
+// Add listener to handle button click on the parent. Use event delegation to handle the click
 calculatorButtons.addEventListener("click", handleButtonClick);
+
+// Add listener to handle theme toggle on the slider
 togglerSlider.addEventListener('click', handleTooggle);
 
 
@@ -20,7 +24,6 @@ let currentResultValue = "",
 let currChar = "", prevChar = "";
 
 setDivResultOpacity("0.5");
-
 setDisplayText("");
 setResultText("0");
 
@@ -34,12 +37,10 @@ function handleButtonClick(e) {
     // Check if the target was one of the button
     if (targetClassList.contains("btn")) {
         
-        
         // Get the text of button
         const btnText = clickTarget.textContent;
 
-        
-
+    
         // Check if the button was an operator
             // Yes => Check if the button was = or any other math operator.
         if (targetClassList.contains("btn-op")) {
